@@ -1,0 +1,19 @@
+{
+    "name": "ivang/bienes-raices",
+    "description": "Creando un proyecto POO",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Ivan Guerrero",
+            "email": "ivangvprogrammer@gmail.com"
+        }
+    ],
+    "require": {
+        "intervention/image": "^3.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\" : "./classes"
+        }
+    }
+}
