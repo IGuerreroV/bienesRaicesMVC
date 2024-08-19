@@ -6,7 +6,7 @@ define('FUNCIONES_URL', __DIR__ . 'funciones.php');
 // define('CARPETA_IMAGENES', __DIR__ . '/../imagenes/');
 
 function getCarpetaImagenes(string $tipo) {
-    $carpetaImagenes = __DIR__ . '/../imagenes/';
+    $carpetaImagenes = $_SERVER['DOCUMENT_ROOT'] . '/imagenes/';
 
     if($tipo === 'propiedades') {
         $carpetaImagenes .= 'propiedades/';
