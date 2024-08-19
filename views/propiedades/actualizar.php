@@ -1,5 +1,5 @@
 <main class="contenedor seccion">
-    <h1>Crear</h1>
+    <h1>Actualizar Propiedad</h1>
 
     <?php foreach($errores as $error): ?>
         <div class="alerta error">
@@ -12,7 +12,7 @@
     <form class="formulario" method="POST" enctype="multipart/form-data">
         <?php include __DIR__ . '/formulario.php'; ?>
 
-        <input class="boton boton-verde" type="submit" value="Crear Propiedad">
+        <input class="boton boton-verde" type="submit" value="Actualizar Propiedad">
     </form>
 
 </main>

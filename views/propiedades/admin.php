@@ -39,7 +39,7 @@
                         <input type="submit" class="boton-rojo-block"  value="Eliminar">
                     </form>
                     
-                    <a class="boton-amarillo-block" href="admin/propiedades/actualizar.php?id=<?php echo $propiedad->id; ?>">Actualizar</a>
+                    <a class="boton-amarillo-block" href="/propiedades/actualizar?id=<?php echo $propiedad->id; ?>">Actualizar</a>
                 </td>
             </tr>
             <?php endforeach; ?>
