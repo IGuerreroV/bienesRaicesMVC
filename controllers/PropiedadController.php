@@ -23,7 +23,7 @@ class PropiedadController {
     public static function crear(Router $router) {
 
         $propiedad = new Propiedad;
-        $Vendedores = Vendedor::all();
+        $vendedores = Vendedor::all();
         // Arreglo con mensajes de errores
         $errores = Propiedad::getErrores();
 
@@ -78,22 +78,73 @@ class PropiedadController {
 
         $router->render('propiedades/crear', [
             'propiedad' => $propiedad,
-            'vendedores' => $Vendedores,
+            'vendedores' => $vendedores,
             'errores' => $errores
         ]);
     }
+    
     public static function actualizar(Router $router) {
         
         $id = validarORedireccionar('/admin');
         $propiedad = Propiedad::find($id);
-        $Vendedores = Vendedor::all();
+        $vendedores = Vendedor::all();
 
         $errores = Propiedad::getErrores();
+
+        // Metodo POST para actualizar
+        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Asignar los atributos
+            $args = $_POST['propiedad'];
+            $tipo = 'propiedades';
+
+            $propiedad->sincronizar($args);
+
+            // Validacion
+            $errores = $propiedad->validar();
+
+            // Obtener la carpeta de imagenes correspondiente
+            $carpetaImagenes = getCarpetaImagenes($tipo);
+            
+            // Subida de archivos
+            // Generar un nombre unico
+            $nombreImagen = md5( uniqid( rand(), true ) ) . '.jpg';
+
+            // Setear la imagen
+            // Realiza un resize a la imagen con intervention
+            if($_FILES['propiedad']['tmp_name']['imagen']) {
+                $manager = new Image(Driver::class);
+                $image = $manager->read($_FILES['propiedad']['tmp_name']['imagen'])->cover(800,600);
+                $propiedad->setImagen($nombreImagen);
+            }
+
+            // Validar
+            $errores = $propiedad->validar();
+
+            // echo "<pre>";
+            // var_dump($_POST);
+            // echo "</pre>";
+            
+            // debuguear($carpetaImagenes . $nombreImagen);
+
+            // echo "<pre>";
+            // var_dump($errores);
+            // echo "</pre>";
+
+            // Revisar que el array de errores este vacio
+            if(empty($errores)) {
+                // Almacenar la imagen
+                if($_FILES['propiedad']['tmp_name']['imagen']) {
+                    $image->save($carpetaImagenes . $nombreImagen);
+                }
+                
+                $propiedad->guardar();
+            }
+        }
 
         $router->render('/propiedades/actualizar', [
             'propiedad' => $propiedad,
             'errores' => $errores,
-            'vendedores' => $Vendedores
+            'vendedores' => $vendedores
         ]);
     }
 }
