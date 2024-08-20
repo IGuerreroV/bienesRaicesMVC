@@ -18,7 +18,7 @@
     <label for="imagen">Imagen:</label>
     <input type="file" id="imagen" accept="image/jpeg, image/png" name="vendedor[imagen]">
     <?php if($vendedor->imagen): ?>
-        <img class="image-small" src="/imagenes/vendedores/<?php echo $vendedor->imagen; ?>" >
+        <img class="imagen-small" src="/imagenes/vendedores/<?php echo $vendedor->imagen; ?>" >
     <?php endif; ?>
 
 </fieldset>

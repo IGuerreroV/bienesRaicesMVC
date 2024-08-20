@@ -66,13 +66,13 @@
                 <td><?php echo $vendedor->telefono; ?></td>
                 <td> <img class="imagen-tabla" src="/imagenes/vendedores/<?php echo $vendedor->imagen; ?>"></td>
                 <td>
-                    <form class="w-100" method="POST">
+                    <form class="w-100" method="POST" action="/vendedores/eliminar">
                         <input type="hidden" name="id" value="<?php echo $vendedor->id; ?>">
                         <input type="hidden" name="tipo" value="vendedor">
                         <input type="submit" class="boton-rojo-block"  value="Eliminar">
                     </form>
                     
-                    <a class="boton-amarillo-block" href="admin/vendedores/actualizar.php?id=<?php echo $vendedor->id; ?>">Actualizar</a>
+                    <a class="boton-amarillo-block" href="/vendedores/actualizar?id=<?php echo $vendedor->id; ?>">Actualizar</a>
                 </td>
             </tr>
             <?php endforeach; ?>
