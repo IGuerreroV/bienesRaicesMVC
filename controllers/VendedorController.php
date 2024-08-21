@@ -68,7 +68,7 @@ class VendedorController {
             $tipo = 'vendedores';
 
             // Sincronizar objeto en memoria con lo que el usuario escribio
-            $vendedor->sincronizar();
+            $vendedor->sincronizar($args);
 
             // Validacion
             $errores = $vendedor->validar();
@@ -102,7 +102,6 @@ class VendedorController {
 
     public static function eliminar() {
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
-            
 
             // Validar el id
             $id = $_POST['id'];

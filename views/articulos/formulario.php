@@ -13,7 +13,7 @@
     <label for="imagen">Imagen:</label>
     <input type="file" id="imagen" accept="image/jpeg, image/png" name="articulo[imagen]">
     <?php if($articulo->imagen): ?>
-        <img class="image-small" src="/imagenes/articulos/<?php echo $articulo->imagen; ?>" >
+        <img class="imagen-small" src="/imagenes/articulos/<?php echo $articulo->imagen; ?>" >
     <?php endif; ?>
 
 </fieldset>

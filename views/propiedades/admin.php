@@ -79,4 +79,34 @@
             <?php endforeach; ?>
         </tbody>
     </table>
+
+    <h2>Articulos</h2>
+    <table class="propiedades">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Titulo</th>
+                <th>imagen</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+
+        <tbody><!-- Mostrar los resultados -->
+            <?php foreach($articulos as $articulo) : ?>
+                <tr>
+                    <td><?php echo $articulo->id; ?></td>
+                    <td><?php echo $articulo->titulo; ?></td>
+                    <td><img class="imagen-tabla" src="/imagenes/articulos/<?php echo $articulo->imagen; ?>"></td>
+                    <td>
+                        <form class="w-100" method="POST" action="/articulos/eliminar">
+                            <input type="hidden" name="id" value="<?php echo $articulo->id; ?>">
+                            <input type="hidden" name="tipo" value="articulo">
+                            <input class="boton-rojo-block" type="submit" value="Eliminar">
+                        </form>
+                        <a class="boton-amarillo-block" href="/articulos/actualizar?id=<?php echo $articulo->id; ?>">Actualizar</a>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
 </main>

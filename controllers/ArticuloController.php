@@ -33,7 +33,7 @@ class ArticuloController {
             }
 
             // Validar
-            $errores = $articulo->valdiar();
+            $errores = $articulo->validar();
 
             // Revisar que el array de errores este vacio
             if(empty($errores)) {
@@ -54,5 +54,65 @@ class ArticuloController {
             'articulo' => $articulo,
             'errores' => $errores
         ]);
+    }
+
+    public static function actualizar(Router $router) {
+        $id = validarORedireccionar('/admin');
+        $articulo = Articulo::find($id);
+
+        $errores = Articulo::getErrores();
+
+        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $args = $_POST['articulo'];
+            $tipo = 'articulos';
+
+            // Sincronizar objeto en memoria con lo que que el usuario escribio
+            $articulo->sincronizar($args);
+
+            // Validacion
+            $errores = $articulo->validar();
+
+            // Obtener la carpeta de imagenes correspondiente
+            $carpetaImagenes = getCarpetaImagenes($tipo);
+
+            /* Subida de archivos */
+            // Generar un nombre unico
+            $nombreImagen = md5(uniqid( rand(), true) ) . ',jpg';
+
+            if($_FILES['articulo']['tmp_name']['imagen']) {
+                $manager = new Image(Driver::class);
+                $image = $manager->read($_FILES['articulo']['tmp_name']['imagen'])->cover(800, 600);
+                $articulo->setImagen($nombreImagen);
+            }
+
+            if(empty($errores)) {
+                if($_FILES['articulo']['tmp_name']['imagen']) {
+                    $image->save($carpetaImagenes . $nombreImagen);
+                }
+                $articulo->guardar();
+            }
+        }
+
+        $router->render('/articulos/actualizar', [
+            'articulo' => $articulo,
+            'errores' => $errores
+        ]);
+    }
+
+    public static function eliminar() {
+        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Validar el id
+            $id = $_POST['id'];
+            $id = filter_var($id, FILTER_VALIDATE_INT);
+
+            if($id) {
+                // Valida el tipo a eliminar
+                $tipo = $_POST['tipo'];
+                if(validarTipoContenido($tipo)) {
+                    $articulo = Articulo::find($id);
+                    $articulo->eliminar();
+                }
+            }
+        }
     }
 }

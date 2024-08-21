@@ -2,6 +2,7 @@
 
 namespace Controllers;
 
+use Model\Articulo;
 use MVC\Router;
 use Model\Propiedad;
 
@@ -38,10 +39,22 @@ class PaginasController {
         ]);
     }
     public static function blog(Router $router) {
-        $router->render('paginas/blog');
+
+        $articulos = Articulo::all();
+
+        $router->render('paginas/blog', [
+            'articulos' => $articulos
+        ]);
     }
     public static function entrada(Router $router) {
-        $router->render('paginas/entrada');
+
+        $id = validarORedireccionar('/blog');
+        // Buscar el blog por su id
+        $articulo = Articulo::find($id);
+
+        $router->render('paginas/entrada', [
+            'articulo' => $articulo
+        ]);
     }
     public static function contacto() {
         echo 'Desde contacto';

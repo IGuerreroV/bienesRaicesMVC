@@ -24,11 +24,11 @@ class Articulo extends ActiveRecord {
         $this->imagen = $args['imagen'] ?? '';
     }
 
-    public function valdiar() {
+    public function validar() {
         if(!$this->titulo) {
             self::$errores[] = 'El titulo es obligatorio';
         }
-        if(!$this->descripcion) {
+        if(strlen($this->descripcion) < 50) {
             self::$errores[] = 'La descripción es obligatorio';
         }
         if(!$this->autor) {

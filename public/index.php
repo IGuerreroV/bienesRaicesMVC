@@ -26,6 +26,9 @@ $router->post('/vendedores/eliminar', [VendedorController::class, 'eliminar']);
 
 $router->get('/articulos/crear', [ArticuloController::class, 'crear']);
 $router->post('/articulos/crear', [ArticuloController::class, 'crear']);
+$router->get('/articulos/actualizar', [ArticuloController::class, 'actualizar']);
+$router->post('/articulos/actualizar', [ArticuloController::class, 'actualizar']);
+$router->post('/articulos/eliminar', [ArticuloController::class, 'eliminar']);
 
 // Zona Publica
 $router->get('/', [PaginasController::class, 'index']);
