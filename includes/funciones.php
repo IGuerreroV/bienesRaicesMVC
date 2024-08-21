@@ -12,6 +12,8 @@ function getCarpetaImagenes(string $tipo) {
         $carpetaImagenes .= 'propiedades/';
     } else if($tipo === 'vendedores') {
         $carpetaImagenes .= 'vendedores/';
+    } else if($tipo === 'articulos') {
+        $carpetaImagenes .= 'articulos/';
     }
 
     return $carpetaImagenes;

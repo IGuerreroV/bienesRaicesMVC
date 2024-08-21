@@ -2,6 +2,7 @@
 
 require_once __DIR__ . '/../includes/app.php';
 
+use Controllers\ArticuloController;
 use MVC\Router;
 use Controllers\PropiedadController;
 use Controllers\VendedorController;
@@ -22,6 +23,9 @@ $router->post('/vendedores/crear', [VendedorController::class, 'crear']);
 $router->get('/vendedores/actualizar', [VendedorController::class, 'actualizar']);
 $router->post('/vendedores/actualizar', [VendedorController::class, 'actualizar']);
 $router->post('/vendedores/eliminar', [VendedorController::class, 'eliminar']);
+
+$router->get('/articulos/crear', [ArticuloController::class, 'crear']);
+$router->post('/articulos/crear', [ArticuloController::class, 'crear']);
 
 // Zona Publica
 $router->get('/', [PaginasController::class, 'index']);

@@ -12,6 +12,7 @@
 
     <a class="boton boton-verde" href="/propiedades/crear">Nueva Propiedad</a>
     <a class="boton boton-amarillo" href="/vendedores/crear">Nuevo(a) Vendedor</a>
+    <a class="boton boton-azul" href="/articulos/crear">Nuevo Articulo</a>
 
     <h2>Propiedades</h2>
     <table class="propiedades">
