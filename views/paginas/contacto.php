@@ -18,7 +18,7 @@
 
             <label for="email">E-mail</label>
             <input type="email" placeholder="Tu Email" id="email" name="contacto[email]" >
-
+P
             <label for="telefono">Teléfono</label>
             <input type="tel" placeholder="Tu Teléfono" id="telefono" name="contacto[telefono]">
 
