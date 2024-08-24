@@ -17,8 +17,13 @@ class LoginController {
 
             if(empty($errores)) {
                 // Verificar si el usuario existe
-                
-                // Verificar el password
+                $resultado = $auth->existeUsuario();
+
+                if(!$resultado) {
+                    $errores = Admin::getErrores();
+                } else {
+                    // Verificar el password
+                }
 
                 // Autenticar al usuario
             }
