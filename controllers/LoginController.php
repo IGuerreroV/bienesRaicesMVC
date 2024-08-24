@@ -28,7 +28,7 @@ class LoginController {
 
                     if($autenticado) {
                         // Autenticar al usuario
-                        
+                        $auth->autenticar();
                     } else {
                         // Password incorrecto (mensaje de error)
                         $errores = Admin::getErrores();
